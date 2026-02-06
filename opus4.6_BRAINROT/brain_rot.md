@@ -46,7 +46,10 @@ Brainrot operates on **Sensory Overload**, **Friction**, and **Retention**.
 | **Pymunk** | 2D Physics engine (Gravity, Collisions) for chaotic object dropping. |
 | **OpenCV** | "Glitch" effects (e.g., inverting colors for 1 frame every 4 seconds). |
 | **Librosa** | Audio analysis (beat detection) to sync cuts to music. |
-| **Whisper** | OpenAI's transcription tool to generate word-level timestamps. |
+| **Gemini 2.5 Flash** | Script generation — writes structured brainrot scripts with scenes, narration, and math. |
+| **Gemini 2.0 Flash** | Image generation — creates scene backgrounds and visuals (no static assets needed). |
+| **pocket-tts** | Lightweight CPU-only TTS for narration audio synthesis. |
+| **mlx-whisper** | Apple Silicon-optimised transcription with word-level timestamps for caption sync. |
 
 ---
 
@@ -144,7 +147,28 @@ Apply authoritative aesthetics to degenerate content ("Educational Gaslighting")
 
 ## 6. Workflow & Monetization
 
-### The Pipeline
+### The Automated Pipeline (CLI)
+Run with a single command — optimised for **Mac M2** (Apple Silicon):
+
+```bash
+# Random brainrot topic
+python generate.py --random
+
+# Specific topic
+python generate.py --topic "The Thermodynamics of the Grimace Shake"
+```
+
+**Pipeline Steps:**
+1.  **Write Script:** Gemini 2.5 Flash (`gemini-2.5-flash-preview-04-17`) generates a structured JSON script with narration, image prompts, and math elements.
+2.  **Generate Images:** Gemini 2.0 Flash (`gemini-2.0-flash-exp`) creates scene background art — no static image assets needed.
+3.  **Generate Audio:** `pocket-tts` (CPU-friendly TTS) synthesizes narration for each scene.
+4.  **Transcribe:** `mlx-whisper` (Apple Silicon GPU-accelerated, `whisper-large-v3-turbo`) produces word-level timestamps for caption sync.
+5.  **Render:** Manim renders the chaotic animation (Cairo renderer, 9:16 vertical, 1080×1920).
+6.  **Composite:** MoviePy layers audio + video, applies 1.35× speed-up, and exports the final MP4.
+
+**Environment variable required:** `GEMINI_API_KEY` (get at https://ai.google.dev/)
+
+### Legacy Pipeline (Manual)
 1.  **Generate Audio:** TTS (Adam/Jessie) + Soundboard mixing.
 2.  **Generate Visuals:** Run Manim/Pymunk scripts to get 5-second chaotic clips based on audio duration.
 3.  **Transcribe:** Run Whisper to get word-level timestamps.

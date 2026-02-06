@@ -1,0 +1,19 @@
+# Core video pipeline
+manim>=0.18.0
+moviepy>=2.0.0
+numpy>=1.24.0
+
+# AI Services
+google-genai>=1.0.0
+
+# Text-to-Speech
+pocket-tts>=0.2.0
+
+# Transcription (Apple Silicon optimized)
+mlx-whisper>=0.4.0
+
+# Audio processing
+scipy>=1.11.0
+
+# Image handling
+Pillow>=10.0.0

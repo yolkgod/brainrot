@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Manim output
+media/
+
+# Generated assets (recreated by pipeline)
+generated_assets/
+
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Video outputs (large files)
+output/
+*.mp4
+!opus4.6_BRAINROT/brainrot_3b1b/final_brainrot_3b1b.mp4
